@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belize & CARICOM Freight Brokerage Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #FBF9F5;
+        color: #1E293B;
+      }
+
+      .tab-active {
+        border-bottom-color: #0F766E;
+        color: #0F766E;
+        font-weight: 600;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #F1F5F9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #CBD5E1;
+        border-radius: 4px;
+      }
+
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 550px;
+        margin: 0 auto;
+        height: 320px;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col justify-between antialiased">
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🌐</span>
+            <div>
+              <h1 class="font-bold text-slate-900 text-lg sm:text-xl">Belize & CARICOM Freight Brokerage Guide</h1>
+              <p class="text-xs text-slate-500">Cross-Border Legal, Operational & Financial Strategy</p>
+            </div>
+          </div>
+          <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+            <a href="#roadmap" class="hover:text-teal-700">Implementation Steps</a>
+            <a href="#models" class="hover:text-teal-700">Operating Models</a>
+            <a href="#regulatory" class="hover:text-teal-700">Jurisdictions</a>
+            <a href="#financials" class="hover:text-teal-700">Tax & Capital Calculator</a>
+            <a href="#corridors" class="hover:text-teal-700">Trade Corridors</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow space-y-12">
+      <section class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
+        <div class="max-w-4xl">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold uppercase tracking-wider">
+              <span>📍 Strategic Relocation & Expansion Guide</span>
+            </div>
+            <button id="tts-briefing-btn" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-900 text-white hover:bg-teal-700 text-xs font-medium shadow-sm">
+              <span>🎧</span>
+              <span>Listen to AI Audio Briefing</span>
+            </button>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">Step-by-Step Cross-Border Setup Strategy</h2>
+          <p class="text-slate-600 text-base leading-relaxed mb-6">
+            Establishing a logistics intermediary while relocating from the United States to Belize requires navigating distinct international legal jurisdictions, statutory bonding rules, exchange controls, and anti-fraud telecommunications requirements. This application synthesizes legal, operational, and financial frameworks to guide American entrepreneurs through cross-border freight brokerage across the United States, Belize, and the CARICOM basin.
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-slate-100 text-sm">
+            <div><span class="block text-slate-400 text-xs font-medium">US Security Bond</span><span class="font-bold text-slate-800">$75,000 (BMC-84 / FMC)</span></div>
+            <div><span class="block text-slate-400 text-xs font-medium">Belize FX Peg</span><span class="font-bold text-slate-800">$2.00 BZD = $1.00 USD</span></div>
+            <div><span class="block text-slate-400 text-xs font-medium">Work Permit Fee</span><span class="font-bold text-slate-800">~$1,500 USD / Year</span></div>
+            <div><span class="block text-slate-400 text-xs font-medium">Taxation System</span><span class="font-bold text-slate-800">Gross Turnover Tax (1.75-6%)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" class="scroll-mt-20">
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2"><span>🗓️</span> Step-by-Step Implementation Roadmap</h2>
+          <p class="text-slate-600 text-sm mt-1">This section breaks down the launch timeline into four sequential phases.</p>
+        </div>
+
+        <div class="flex overflow-x-auto border-b border-slate-200 mb-6 custom-scrollbar">
+          <button onclick="switchPhase(1)" id="phase-btn-1" class="px-5 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-colors tab-active">Phase 1: Entity & Charter Setup</button>
+          <button onclick="switchPhase(2)" id="phase-btn-2" class="px-5 py-3 text-sm font-medium border-b-2 border-transparent text-slate-500 whitespace-nowrap transition-colors">Phase 2: Local Belize Permitting & Tax</button>
+          <button onclick="switchPhase(3)" id="phase-btn-3" class="px-5 py-3 text-sm font-medium border-b-2 border-transparent text-slate-500 whitespace-nowrap transition-colors">Phase 3: Logistics Licensing & Bonding</button>
+          <button onclick="switchPhase(4)" id="phase-btn-4" class="px-5 py-3 text-sm font-medium border-b-2 border-transparent text-slate-500 whitespace-nowrap transition-colors">Phase 4: Tech Infrastructure & Operations</button>
+        </div>
+
+        <div id="phase-content" class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm min-h-[320px]"></div>
+      </section>
+
+      <section id="models" class="scroll-mt-20">
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2"><span>🏗️</span> Operating Model Decision Matrix</h2>
+          <p class="text-slate-600 text-sm mt-1">Compare the three primary structural models for managing freight remotely from Belize or within the Caribbean basin.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div onclick="selectModel('A')" id="model-card-A" class="cursor-pointer bg-white border-2 border-teal-600 p-5 rounded-xl shadow-sm">
+            <div class="flex justify-between items-center mb-2"><span class="text-xs font-bold px-2 py-1 bg-teal-100 text-teal-800 rounded">Model A</span><span class="text-lg">🚛</span></div>
+            <h3 class="font-bold text-slate-900">Remote US Domestic Brokerage</h3>
+            <p class="text-xs text-slate-500 mt-1">FMCSA Property Broker authority operated remotely from Belize via secure US cloud VDI.</p>
+          </div>
+          <div onclick="selectModel('B')" id="model-card-B" class="cursor-pointer bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
+            <div class="flex justify-between items-center mb-2"><span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-800 rounded">Model B</span><span class="text-lg">🚢</span></div>
+            <h3 class="font-bold text-slate-900">US-Caribbean FMC Intermediary</h3>
+            <p class="text-xs text-slate-500 mt-1">FMC-licensed NVOCC or Ocean Freight Forwarder arranging ocean container shipping.</p>
+          </div>
+          <div onclick="selectModel('C')" id="model-card-C" class="cursor-pointer bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
+            <div class="flex justify-between items-center mb-2"><span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-800 rounded">Model C</span><span class="text-lg">🔄</span></div>
+            <h3 class="font-bold text-slate-900">Regional Land/Feeder Forwarder</h3>
+            <p class="text-xs text-slate-500 mt-1">Belize 3PL facilitating cross-border overland drayage with Mexico & Guatemala.</p>
+          </div>
+        </div>
+
+        <div id="model-details-panel" class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm"></div>
+      </section>
+
+      <section id="regulatory" class="scroll-mt-20">
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2"><span>⚖️</span> Jurisdictional Classifications & Legal Mandates</h2>
+          <p class="text-slate-600 text-sm mt-1">Conflating transportation legal roles across borders causes serious regulatory exposure.</p>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-4 mb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <span class="text-sm font-medium text-slate-600">Filter Region:</span>
+            <select id="jurisdiction-filter" onchange="filterJurisdictions()" class="bg-slate-50 border border-slate-300 text-slate-800 text-sm rounded-lg p-2">
+              <option value="ALL">All Regions</option>
+              <option value="US">United States (FMCSA/FMC)</option>
+              <option value="BZ">Belize (BCCAR/Customs)</option>
+            </select>
+          </div>
+          <input type="text" id="jurisdiction-search" onkeyup="filterJurisdictions()" placeholder="Search mandates, statutes, bonds..." class="bg-slate-50 border border-slate-300 text-slate-800 text-sm rounded-lg p-2 w-full sm:w-64" />
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-sm text-left text-slate-600">
+              <thead class="text-xs text-slate-700 uppercase bg-slate-50 border-b border-slate-200">
+                <tr>
+                  <th class="px-6 py-3 font-semibold">Classification</th>
+                  <th class="px-6 py-3 font-semibold">Governing Body & Statute</th>
+                  <th class="px-6 py-3 font-semibold">Licensing Instrument</th>
+                  <th class="px-6 py-3 font-semibold">Financial Responsibility</th>
+                  <th class="px-6 py-3 font-semibold">Operational Scope</th>
+                </tr>
+              </thead>
+              <tbody id="jurisdiction-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5 text-amber-900 text-sm leading-relaxed">
+          <div class="flex items-center gap-2 font-bold mb-2 text-amber-950"><span>⚠️</span> CARICOM Single Market & Economy (CSME) Expatriate Limitation</div>
+          <p>While the CSME grants Community Treatment (0% tariffs) to qualifying goods and free movement of skilled persons within participating member states, <strong>this right applies exclusively to CARICOM citizens holding a CSME Skills Certificate</strong>. United States citizens are classified as third-country nationals under the Revised Treaty of Chaguaramas.</p>
+        </div>
+      </section>
+
+      <section id="financials" class="scroll-mt-20">
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2"><span>💵</span> Financial Planning, Capital Allocation & Tax Dashboard</h2>
+          <p class="text-slate-600 text-sm mt-1">Calculate estimated startup capital, surety bond liabilities, and licensing expenses.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-6">
+            <h3 class="font-bold text-slate-900 text-base border-b border-slate-100 pb-3">Startup Capital Allocation Simulator (USD)</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div>
+                <label class="block font-medium text-slate-700 text-xs mb-1">Entity Formation & Registered Agent</label>
+                <input type="number" id="input-incorporation" value="1200" oninput="updateCapitalChart()" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-800" />
+              </div>
+              <div>
+                <label class="block font-medium text-slate-700 text-xs mb-1">Surety Bond Underwriting (Annual Cost)</label>
+                <input type="number" id="input-bonding" value="2500" oninput="updateCapitalChart()" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-800" />
+              </div>
+              <div>
+                <label class="block font-medium text-slate-700 text-xs mb-1">Belize Work Permit & Trade License</label>
+                <input type="number" id="input-permits" value="2200" oninput="updateCapitalChart()" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-800" />
+              </div>
+              <div>
+                <label class="block font-medium text-slate-700 text-xs mb-1">Cloud VDI, IP & Software TMS Setup</label>
+                <input type="number" id="input-tech" value="3000" oninput="updateCapitalChart()" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-800" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block font-medium text-slate-700 text-xs mb-1">Liquidity & Central Bank FX Reserve Balance</label>
+                <input type="number" id="input-reserves" value="10000" oninput="updateCapitalChart()" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-slate-800" />
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <div class="chart-container"><canvas id="capitalChart"></canvas></div>
+              <p class="text-center text-xs text-slate-400 mt-2">Estimated Initial Capital Requirement: <span id="total-capital-display" class="font-bold text-slate-700">$18,900 USD</span></p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+              <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 mb-2"><span>🏛️</span> Central Bank & Foreign Exchange Controls</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">Belize pegs its currency at <strong>2.00 BZD = 1.00 USD</strong>. To hold foreign currency for settling ocean freight lines, companies must apply to the Central Bank for a <strong>Foreign Currency Account (Form XCH9)</strong>.</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-3">
+              <h4 class="font-bold text-slate-900 text-sm border-b border-slate-100 pb-2">Tax Jurisdiction Dual-Requirements</h4>
+              <div class="space-y-2 text-xs">
+                <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                  <span class="font-bold text-slate-800 block">Belize Tax Service (BTS / IRIS)</span>
+                  <p class="text-slate-600 mt-1">Assesses <strong>Business Tax on gross turnover</strong> (1.75% to 6.0%) rather than net income.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                  <span class="font-bold text-slate-800 block">US Expatriate Tax (IRS Requirements)</span>
+                  <p class="text-slate-600 mt-1">US citizens face worldwide taxation. Active expats can use the <strong>Foreign Earned Income Exclusion</strong> for earned wages.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="corridors" class="scroll-mt-20">
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2"><span>🗺️</span> Regional Trade Corridors & Execution Mechanics</h2>
+          <p class="text-slate-600 text-sm mt-1">Understand the physical routing, border transfers, and customs clearance procedures across the three main trade routes servicing Belize and Central America.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3"><span class="text-xs font-bold px-2 py-1 bg-blue-100 text-blue-800 rounded">Corridor 1</span><span class="text-xl">🚢</span></div>
+              <h3 class="font-bold text-slate-900 text-base mb-2">US-to-Belize Ocean Shipping</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-4">FCL/LCL ocean freight originating from Miami, Port Everglades, or Houston sailing to Belize.</p>
+              <div class="space-y-2 text-xs text-slate-500">
+                <div class="flex items-start gap-2"><span class="text-teal-600 font-bold">•</span><span><strong>Carriers:</strong> King Ocean, Seaboard, Hyde Shipping.</span></div>
+                <div class="flex items-start gap-2"><span class="text-teal-600 font-bold">•</span><span><strong>Clearance:</strong> ASYCUDA World via licensed declarant.</span></div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400">Primary Key: FMC NVOCC License + House Bill of Lading</div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3"><span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">Corridor 2</span><span class="text-xl">🚚</span></div>
+              <h3 class="font-bold text-slate-900 text-base mb-2">Overland Mexico Transshipment</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-4">Overland highway transit moving through Mexico to the Chetumal and Belize border transfer points.</p>
+              <div class="space-y-2 text-xs text-slate-500">
+                <div class="flex items-start gap-2"><span class="text-teal-600 font-bold">•</span><span><strong>Drayage Handoff:</strong> Mexican line-haul trailers unhitch in border zone.</span></div>
+                <div class="flex items-start gap-2"><span class="text-teal-600 font-bold">•</span><span><strong>Local Delivery:</strong> Belizean towheads continue domestic transit.</span></div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400">Primary Key: Cross-border Drayage Contract & Santa Elena Post</div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3"><span class="text-xs font-bold px-2 py-1 bg-emerald-100 text-emerald-800 rounded">Corridor 3</span><span class="text-xl">🌴</span></div>
+              <h3 class="font-bold text-slate-900 text-base mb-2">Intra-CARICOM Trade Routes</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-4">Regional maritime feeder routes connecting Jamaica, Trinidad, Guyana, and Barbados to Belize.</p>
+              <div class="space-y-2 text-xs text-slate-500">
+                <div class="flex items-start gap-2"><span class="text-teal-600 font-bold">•</span><span><strong>Tariffs:</strong> 0% Community Duty under Revised Treaty of Chaguaramas.</span></div>
+                <div class="flex items-start gap-2"><span class="text-teal-600 font-bold">•</span><span><strong>Mandate:</strong> Verified CARICOM Certificate of Origin required.</span></div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400">Primary Key: Kingston / South Florida Hub Transshipment</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ai-tools" class="scroll-mt-20">
+        <div class="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100 border border-teal-300 text-teal-900 text-xs font-bold uppercase tracking-wider mb-2"><span>✨ Powered by Gemini 3 Flash & Live Search</span></div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2"><span>🤖</span> AI Freight Copilot & Regulatory Assistant</h2>
+            <p class="text-slate-600 text-sm mt-1">Accelerate operational setup, simulate regulatory scenarios, draft cross-border transport agreements, and perform grounded tariff searches.</p>
+          </div>
+          <div class="flex border border-slate-200 rounded-lg bg-slate-100 p-1 text-xs font-medium">
+            <button id="ai-tab-btn-compliance" onclick="switchAITab('compliance')" class="px-3.5 py-1.5 rounded-md bg-white text-slate-900 font-semibold shadow-sm transition-all">Route Compliance</button>
+            <button id="ai-tab-btn-contracts" onclick="switchAITab('contracts')" class="px-3.5 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all">Contract Drafter</button>
+            <button id="ai-tab-btn-search" onclick="switchAITab('search')" class="px-3.5 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all">Tariff & Trade Search</button>
+          </div>
+        </div>
+
+        <div id="ai-tab-compliance" class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-6">
+          <div class="border-b border-slate-100 pb-4">
+            <h3 class="font-bold text-slate-900 text-base flex items-center gap-2"><span>🧭</span> Cross-Border Corridor Scenario Evaluator</h3>
+            <p class="text-xs text-slate-500 mt-1">Input origin, destination, commodity, and equipment to generate custom legal filing checklists.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div><label class="block font-semibold text-slate-700 mb-1">Origin Location</label><input id="copilot-origin" type="text" value="Houston, TX (Port of Houston)" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800" /></div>
+            <div><label class="block font-semibold text-slate-700 mb-1">Destination & Port/Border</label><input id="copilot-destination" type="text" value="Belize City, Belize (Port of Belize)" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800" /></div>
+            <div><label class="block font-semibold text-slate-700 mb-1">Commodity & Cargo Type</label><input id="copilot-commodity" type="text" value="Refrigerated Poultry & Frozen Foods" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800" /></div>
+            <div><label class="block font-semibold text-slate-700 mb-1">Selected Operating Model</label><select id="copilot-model" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800"><option value="Model A (Remote US Domestic Broker)">Model A: Remote US Brokerage</option><option value="Model B (US-Caribbean FMC NVOCC)" selected>Model B: US-Caribbean FMC NVOCC</option><option value="Model C (Regional Land/Feeder 3PL)">Model C: Regional Land/Drayage 3PL</option></select></div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs text-slate-400">Uses structured compliance analysis</span>
+            <button onclick="runComplianceCopilot()" id="copilot-run-btn" class="px-5 py-2.5 bg-teal-700 hover:bg-teal-800 text-white rounded-lg text-xs font-semibold flex items-center gap-2 shadow-sm transition-all"><span>✨</span><span>Analyze Corridor Compliance</span></button>
+          </div>
+
+          <div id="copilot-output-container" class="hidden bg-slate-50 border border-slate-200 rounded-xl p-5 text-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+              <span class="font-bold text-slate-900 text-sm flex items-center gap-2"><span>📋</span> Custom Compliance & Operational Blueprint</span>
+              <button onclick="copyElementText('copilot-result-text')" class="text-xs text-teal-700 hover:text-teal-900 font-medium flex items-center gap-1"><span>📄</span> Copy Blueprint</button>
+            </div>
+            <div id="copilot-result-text" class="text-xs text-slate-700 leading-relaxed whitespace-pre-line font-mono bg-white p-4 rounded-lg border border-slate-200 overflow-x-auto max-h-[420px] custom-scrollbar"></div>
+          </div>
+        </div>
+
+        <div id="ai-tab-contracts" class="hidden bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-6">
+          <div class="border-b border-slate-100 pb-4">
+            <h3 class="font-bold text-slate-900 text-base flex items-center gap-2"><span>📝</span> Cross-Border Drayage & Carrier Clause Drafter</h3>
+            <p class="text-xs text-slate-500 mt-1">Generate tailored clauses for rate confirmations, border drayage transfer agreements, currency peg settlement, and carrier liability disclaimers.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Agreement / Clause Type</label>
+              <select id="contract-clause-type" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800">
+                <option value="Border Drayage Uncoupling & Interchange Liability (Mexico-Belize Border)">Border Drayage Interchange & Custody Transfer</option>
+                <option value="Central Bank FX Peg & Currency Settlement Clause ($2.00 BZD = $1.00 USD)">FX Peg & Dual-Currency Payment Settlement</option>
+                <option value="House Bill of Lading (HBL) NVOCC Limitation of Liability">NVOCC Maritime Bill of Lading Limitations</option>
+              </select>
+            </div>
+            <div><label class="block font-semibold text-slate-700 mb-1">Company Broker Name</label><input id="contract-company-name" type="text" value="Belize Gateway Logistics LLC" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800" /></div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Governing Jurisdiction</label>
+              <select id="contract-jurisdiction" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800">
+                <option value="State of Delaware, United States">State of Delaware, US</option>
+                <option value="State of Wyoming, United States">State of Wyoming, US</option>
+                <option value="Laws of Belize (Supreme Court of Belize)">Belize (Companies Act 2022)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs text-slate-400">Generates precise operational legal drafting</span>
+            <button onclick="runContractDrafter()" id="contract-run-btn" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold flex items-center gap-2 shadow-sm transition-all"><span>🖋️</span><span>Draft Agreement Clause</span></button>
+          </div>
+
+          <div id="contract-output-container" class="hidden bg-slate-50 border border-slate-200 rounded-xl p-5 text-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+              <span class="font-bold text-slate-900 text-sm flex items-center gap-2"><span>📜</span> Generated Enforceable Legal Clause</span>
+              <button onclick="copyElementText('contract-result-text')" class="text-xs text-teal-700 hover:text-teal-900 font-medium flex items-center gap-1"><span>📄</span> Copy Clause</button>
+            </div>
+            <div id="contract-result-text" class="text-xs text-slate-800 leading-relaxed font-mono bg-white p-4 rounded-lg border border-slate-200 overflow-x-auto max-h-[380px] custom-scrollbar whitespace-pre-line"></div>
+          </div>
+        </div>
+
+        <div id="ai-tab-search" class="hidden bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-6">
+          <div class="border-b border-slate-100 pb-4">
+            <h3 class="font-bold text-slate-900 text-base flex items-center gap-2"><span>🔎</span> Grounded Tariff & Trade Intelligence (Live Web Search)</h3>
+            <p class="text-xs text-slate-500 mt-1">Ask practical trade questions regarding Belize Customs, CARICOM rules, and agricultural permit requirements.</p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input id="grounded-query-input" type="text" placeholder="e.g., What are Belize import tariff rates and BAHA inspection rules for poultry and meat from the US?" value="What are Belize Customs duty rates, Revenue Replacement Duty (RRD), and Environmental Levy on imported commercial trucks?" class="flex-grow bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800" />
+            <button onclick="runGroundedSearch()" id="grounded-run-btn" class="px-5 py-2.5 bg-teal-700 hover:bg-teal-800 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-2 shadow-sm transition-all whitespace-nowrap"><span>🔍</span><span>Search Grounded Intel</span></button>
+          </div>
+
+          <div id="grounded-output-container" class="hidden bg-slate-50 border border-slate-200 rounded-xl p-5 text-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-3"><span class="font-bold text-slate-900 text-sm flex items-center gap-2"><span>🌐</span> Live Grounded Intelligence Summary</span><span class="text-xs text-slate-400">Verified via Search</span></div>
+            <div id="grounded-result-text" class="text-xs text-slate-700 leading-relaxed font-sans bg-white p-4 rounded-lg border border-slate-200 overflow-x-auto max-h-[380px] custom-scrollbar whitespace-pre-line"></div>
+            <div id="grounded-sources-container" class="pt-2 border-t border-slate-200 text-xs"><span class="font-bold text-slate-700 block mb-2">Grounding Sources & Official Citations:</span><ul id="grounded-sources-list" class="space-y-1 text-slate-500"></ul></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div><span class="font-semibold text-slate-700">Belize & CARICOM Freight Brokerage Operational Dashboard</span></div>
+        <div><span>Designed for Educational & Legal Strategy Analysis</span></div>
+      </div>
+    </footer>
+
+    <div id="app-toast" class="hidden fixed bottom-6 right-6 z-50 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-lg shadow-xl border border-slate-700 text-xs flex items-center justify-between gap-3">
+      <span id="toast-message">Notification</span>
+      <button onclick="dismissToast()" class="text-slate-400 hover:text-white font-bold ml-2">✕</button>
+    </div>
+
+    <script>
+      const phaseData = {
+        1: {
+          title: 'Phase 1: Entity Structuring & Corporate Charter',
+          timeframe: 'Weeks 1–4',
+          cost: '~$1,500 - $3,000 USD',
+          description: 'Establish the underlying dual-corporate structure needed to handle domestic transportation authorities in the US alongside local commercial presence in Belize.',
+          checklist: [
+            'Form US Domestic Operating Unit (Delaware or Wyoming LLC) for FMCSA/FMC holding.',
+            'Retain BCCAR-Licensed Registered Agent in Belize for local company incorporation.',
+            'Complete Online Business Registry System (OBRS) filings under Belize Companies Act, 2022.',
+            'Secure physical commercial lease in Belize (PO Boxes disallowed under statute).',
+            'Apply for IRS Employer Identification Number (EIN) & open US corporate bank account.'
+          ],
+          keyTakeaway: 'Maintaining separate US and Belizean corporate entities shields liabilities and simplifies surety bond underwriting.'
+        },
+        2: {
+          title: 'Phase 2: Local Belize Permitting, Tax & Work Authorizations',
+          timeframe: 'Weeks 5–10',
+          cost: '~$2,000 - $3,500 USD',
+          description: 'Complete domestic regulatory compliance in Belize to operate legally as an owner-operator expatriate.',
+          checklist: [
+            'Submit OBRS business certificate to local City/Town Council for Municipal Trade License inspection.',
+            'Secure Belizeian work authorization for operational founder and key manager.',
+            'Register for business tax and confirm GST treatment for international freight and local services.',
+            'File Form XCH9 with Central Bank of Belize to open corporate Foreign Currency Account.'
+          ],
+          keyTakeaway: 'US citizens cannot work on standard 30-day tourist stamps; active operational management requires a Self-Employed Work Permit.'
+        },
+        3: {
+          title: 'Phase 3: Logistics Licensing, Surety Bonding & Insurance',
+          timeframe: 'Weeks 8–14',
+          cost: '~$3,000 - $8,000 USD (Bond Premiums)',
+          description: 'Secure mandatory transportation intermediary licenses, post statutory financial responsibility bonds, and bind cargo liability coverage.',
+          checklist: [
+            'Obtain FMCSA MC authority and BMC-84 financial responsibility bond.',
+            'Evaluate FMC ocean intermediary authority for NVOCC or OTI operations.',
+            'File BOC-3 blanket agent and post required agent service designations.',
+            'Bind contingent cargo and general liability insurance coverage.'
+          ],
+          keyTakeaway: 'If the relocating founder lacks 3 years of documented US ocean freight experience, an experienced Qualifying Individual (QI) must be hired.'
+        },
+        4: {
+          title: 'Phase 4: Technical Systems, Anti-Fraud & Border Networks',
+          timeframe: 'Weeks 12–16',
+          cost: '~$1,500 - $3,000 USD (Monthly software/hardware)',
+          description: 'Deploy secure telecommunications and cloud IT infrastructure to prevent fraud flags while setting up local customs declarant networks.',
+          checklist: [
+            'Deploy secure US cloud VDI for DAT, Truckstop, Carrier411 access.',
+            'Set commercial static IPs and MFA enforcement for dispatch operations.',
+            'Build approved vendor and carrier master data with border drayage partners.',
+            'Contract with bonded drayage haulers for border trailer transfers at Chetumal and Melchor de Mencos.'
+          ],
+          keyTakeaway: 'Accessing DAT or Carrier411 directly from a Belizean ISP IP pool will trigger automated fraud locks on your broker authority.'
+        }
+      };
+
+      const modelData = {
+        A: {
+          title: 'Model A: Remote US Domestic Property Brokerage',
+          badge: 'FMCSA Surface Freight',
+          target: 'US Shippers & Interstate Motor Carriers',
+          summary: 'A remote US brokerage platform operating from Belize, using secure VDI and US-based carrier data access for domestic freight sales and routing.',
+          risk: 'High operational complexity if telecom routing or carrier data access is not isolated to US IP addresses.',
+          flow: ['US Shipper Tender', 'Remote Dispatch via US Cloud VDI', 'Carrier Vetting (Highway)', 'US Motor Carrier Line-Haul', 'US Settlement']
+        },
+        B: {
+          title: 'Model B: US-Caribbean FMC Intermediary',
+          badge: 'FMC Ocean Intermediary',
+          target: 'Ocean cargo and Caribbean import/export shipments',
+          summary: 'An FMC-licensed ocean transportation intermediary managing cargo from US ports to Belize and other Caribbean destinations.',
+          risk: 'Requires careful documentation, customs coordination, and NVOCC or OTI compliance for bills of lading and port handling.',
+          flow: ['Exporter Cargo Consolidation', 'NVOCC Issues House Bill of Lading', 'VOCC Ocean Transit', 'Belize Port Arrival', 'ASYCUDA Customs Clearance']
+        },
+        C: {
+          title: 'Model C: Regional Land/Feeder Forwarder',
+          badge: 'Belize 3PL / Cross-Border Forwarder',
+          target: 'Regional overland and feeder freight through Mexico and Central America',
+          summary: 'A Belize-based freight forwarder operating through local drayage partners and border transfer yards.',
+          risk: 'Cross-border documentation and border transfer contracts are essential to avoid customs, trailer, and liability issues.',
+          flow: ['Regional Pickup', 'Mexico Line-Haul', 'Border Transfer', 'Belize Customs Release', 'Final Mile Delivery']
+        }
+      };
+
+      const jurisdictions = [
+        { role: 'US Property Broker', region: 'US', authority: 'FMCSA (49 U.S.C. § 13904)', license: 'Broker Operating Authority (MC Number)', bond: '$75,000 BMC-84 Bond / BMC-85 Trust', scope: 'Arranging interstate surface motor carrier freight within the US.' },
+        { role: 'Ocean Transportation Intermediary (NVOCC)', region: 'US', authority: 'FMC (46 U.S.C. § 40901)', license: 'FMC-18 License / Form FMC-65 Registration', bond: '$75,000 (US) / $150,000 (Foreign Registered)', scope: 'Issuing house bills of lading, contracting vessel space, ocean common carrier liability.' },
+        { role: 'Ocean Freight Forwarder (OFF)', region: 'US', authority: 'FMC (46 U.S.C. § 40901)', license: 'FMC-18 Ocean Freight Forwarder License', bond: '$50,000 Surety Bond', scope: 'Dispatching US export waterborne shipments and processing export documentation.' },
+        { role: 'Belize Freight Forwarder / 3PL', region: 'BZ', authority: 'BCCAR (Belize Companies Act 2022)', license: 'Certificate of Incorporation & Municipal Trade License', bond: 'Discretionary Commercial Cargo Insurance', scope: 'Multimodal cargo consolidation, warehousing, and 3PL logistics management.' },
+        { role: 'Belize Customs Declarant / Broker', region: 'BZ', authority: 'Belize Customs & Excise', license: 'Licensed Customs Broker / Declarant', bond: 'Customs bond and compliance deposit', scope: 'Import/export declarations, tariff processing, and border compliance for goods entering Belize.' }
+      ];
+
+      let capitalChartInstance = null;
+
+      const formatCurrency = (value) => `$${Number(value).toLocaleString()} USD`;
+
+      function renderPhase(phaseNum) {
+        const phase = phaseData[phaseNum];
+        const checklistHtml = phase.checklist.map(item => `<li class="flex items-start gap-2 text-slate-600"><span class="text-teal-600 mt-1">✓</span><span>${item}</span></li>`).join('');
+
+        document.getElementById('phase-content').innerHTML = `
+          <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_.8fr] gap-6">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <h3 class="text-2xl font-bold text-slate-900">${phase.title}</h3>
+                <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-semibold">${phase.timeframe}</span>
+              </div>
+              <p class="text-slate-600 leading-relaxed mb-5">${phase.description}</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-3"><span class="block text-slate-400 text-[11px] uppercase tracking-wide">Estimated Budget</span><span class="font-bold text-slate-800">${phase.cost}</span></div>
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-3"><span class="block text-slate-400 text-[11px] uppercase tracking-wide">Priority</span><span class="font-bold text-slate-800">Critical gate</span></div>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <h4 class="font-bold text-slate-900 mb-3">Key Action Checklist</h4>
+              <ul class="space-y-3">${checklistHtml}</ul>
+            </div>
+          </div>
+          <div class="mt-6 p-4 rounded-xl bg-teal-50 border border-teal-200 text-sm text-teal-900">
+            <span class="font-bold block mb-1">Key Takeaway</span>
+            <span>${phase.keyTakeaway}</span>
+          </div>
+        `;
+      }
+
+      function switchPhase(phaseNum) {
+        renderPhase(phaseNum);
+        document.querySelectorAll('[id^="phase-btn-"]')?.forEach((button) => {
+          button.classList.remove('tab-active');
+          button.classList.add('border-transparent', 'text-slate-500');
+          button.classList.remove('border-slate-200');
+        });
+        const activeBtn = document.getElementById(`phase-btn-${phaseNum}`);
+        if (activeBtn) {
+          activeBtn.classList.add('tab-active');
+          activeBtn.classList.remove('text-slate-500', 'border-transparent');
+          activeBtn.classList.add('border-slate-200');
+        }
+      }
+
+      function selectModel(modelKey) {
+        const model = modelData[modelKey];
+        const cards = document.querySelectorAll('[id^="model-card-"]');
+        cards.forEach((card) => {
+          card.classList.remove('border-teal-600', 'border-2');
+          card.classList.add('border', 'border-slate-200');
+        });
+        const activeCard = document.getElementById(`model-card-${modelKey}`);
+        if (activeCard) {
+          activeCard.classList.remove('border', 'border-slate-200');
+          activeCard.classList.add('border-2', 'border-teal-600');
+        }
+
+        const flowHtml = model.flow.map((step, index) => `
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center text-xs font-bold">${index + 1}</div>
+            <span class="text-sm text-slate-700">${step}</span>
+          </div>
+        `).join('');
+
+        document.getElementById('model-details-panel').innerHTML = `
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_.9fr] gap-6">
+            <div>
+              <span class="text-[11px] font-bold px-2 py-1 bg-teal-100 text-teal-800 rounded">${model.badge}</span>
+              <h3 class="mt-3 text-xl font-bold text-slate-900">${model.title}</h3>
+              <p class="mt-2 text-sm text-slate-600">${model.summary}</p>
+              <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-3"><span class="block text-slate-400 text-[11px] uppercase tracking-wide">Target Client</span><span class="font-semibold text-slate-800">${model.target}</span></div>
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-3"><span class="block text-slate-400 text-[11px] uppercase tracking-wide">Main Risk</span><span class="font-semibold text-slate-800">${model.risk}</span></div>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <h4 class="font-bold text-slate-900 mb-3">Operational Flow</h4>
+              <div class="space-y-3">${flowHtml}</div>
+            </div>
+          </div>
+        `;
+      }
+
+      function filterJurisdictions() {
+        const regionFilter = document.getElementById('jurisdiction-filter').value;
+        const query = document.getElementById('jurisdiction-search').value.toLowerCase();
+
+        const rows = jurisdictions.filter((item) => {
+          const matchesRegion = regionFilter === 'ALL' || item.region === regionFilter;
+          const haystack = `${item.role} ${item.authority} ${item.license} ${item.bond} ${item.scope}`.toLowerCase();
+          const matchesSearch = haystack.includes(query);
+          return matchesRegion && matchesSearch;
+        });
+
+        const tbody = document.getElementById('jurisdiction-tbody');
+        tbody.innerHTML = rows.map((item) => `
+          <tr class="border-b border-slate-100 hover:bg-slate-50">
+            <td class="px-6 py-4 font-medium text-slate-800">${item.role}</td>
+            <td class="px-6 py-4">${item.authority}</td>
+            <td class="px-6 py-4">${item.license}</td>
+            <td class="px-6 py-4">${item.bond}</td>
+            <td class="px-6 py-4">${item.scope}</td>
+          </tr>
+        `).join('') || `<tr><td colspan="5" class="px-6 py-8 text-center text-slate-500">No matching jurisdictions found.</td></tr>`;
+      }
+
+      function initCapitalChart() {
+        const ctx = document.getElementById('capitalChart');
+        const data = getCapitalValues();
+
+        capitalChartInstance = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Entity Setup', 'Bonding', 'Permits', 'Technology', 'Reserve'],
+            datasets: [{
+              data,
+              backgroundColor: ['#14b8a6', '#f59e0b', '#06b6d4', '#e2e8f0', '#0f172a'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'bottom', labels: { boxWidth: 12, usePointStyle: true, font: { size: 11 } } },
+              tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } }
+            }
+          }
+        });
+        updateCapitalChart();
+      }
+
+      function getCapitalValues() {
+        const values = [
+          Number(document.getElementById('input-incorporation').value || 0),
+          Number(document.getElementById('input-bonding').value || 0),
+          Number(document.getElementById('input-permits').value || 0),
+          Number(document.getElementById('input-tech').value || 0),
+          Number(document.getElementById('input-reserves').value || 0)
+        ];
+        return values;
+      }
+
+      function updateCapitalChart() {
+        const values = getCapitalValues();
+        const total = values.reduce((sum, value) => sum + value, 0);
+        document.getElementById('total-capital-display').textContent = formatCurrency(total);
+        if (capitalChartInstance) {
+          capitalChartInstance.data.datasets[0].data = values;
+          capitalChartInstance.update();
+        }
+      }
+
+      function switchAITab(tab) {
+        const tabs = ['compliance', 'contracts', 'search'];
+        tabs.forEach((name) => {
+          const panel = document.getElementById(`ai-tab-${name}`);
+          const btn = document.getElementById(`ai-tab-btn-${name}`);
+          if (panel) panel.classList.add('hidden');
+          if (btn) {
+            btn.classList.remove('bg-white', 'text-slate-900', 'font-semibold', 'shadow-sm');
+            btn.classList.add('text-slate-600');
+          }
+        });
+
+        const activePanel = document.getElementById(`ai-tab-${tab}`);
+        const activeBtn = document.getElementById(`ai-tab-btn-${tab}`);
+        if (activePanel) activePanel.classList.remove('hidden');
+        if (activeBtn) {
+          activeBtn.classList.add('bg-white', 'text-slate-900', 'font-semibold', 'shadow-sm');
+          activeBtn.classList.remove('text-slate-600');
+        }
+      }
+
+      function copyElementText(elementId) {
+        const target = document.getElementById(elementId);
+        const text = target.innerText;
+        navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard'));
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById('app-toast');
+        const msg = document.getElementById('toast-message');
+        msg.textContent = message;
+        toast.classList.remove('hidden');
+        clearTimeout(showToast.timeoutId);
+        showToast.timeoutId = setTimeout(() => toast.classList.add('hidden'), 2200);
+      }
+
+      function dismissToast() {
+        document.getElementById('app-toast').classList.add('hidden');
+      }
+
+      function runComplianceCopilot() {
+        const result = [
+          `Route Compliance Blueprint`,
+          `Origin: ${document.getElementById('copilot-origin').value}`,
+          `Destination: ${document.getElementById('copilot-destination').value}`,
+          `Commodity: ${document.getElementById('copilot-commodity').value}`,
+          `Operating Model: ${document.getElementById('copilot-model').value}`,
+          '',
+          '1) Pre-File Regulatory Gate',
+          ' - Verify whether the operation is truly US-origin or Belize-imported cargo and ensure the correct legal entity is named on the commercial invoice.',
+          ' - Confirm all customs declarations and carrier notices are issued under the proper licensed broker or agent, not a generic email alias.',
+          ' - Validate freight forwarding insurance and cargo liability coverage before tendering refrigerated or perishable goods.',
+          '',
+          '2) Border & Logistics Controls',
+          ' - Secure border transfer arrangements with licensed Belizean towheads for drayage or local overland handoff.',
+          ' - Check equipment restrictions, reefer power requirements, and temperature monitoring for poultry or frozen food cargo.',
+          ' - Confirm ASYCUDA World and Belize Customs declarant requirements before final tender release.',
+          '',
+          '3) Anti-Fraud & Telecom Controls',
+          ' - Route all DAT, Truckstop, and carrier communication through controlled US IP-based VDI infrastructure.',
+          ' - Maintain static commercial IPs, MFA enforcement, and segregated login roles for dispatch and brokerage teams.',
+          ' - Record every rate sheet, carrier agreement, and brokerage authority acknowledgment to avoid AML or double-brokering exposure.'
+        ].join('\n');
+
+        const output = document.getElementById('copilot-result-text');
+        output.textContent = result;
+        document.getElementById('copilot-output-container').classList.remove('hidden');
+      }
+
+      function runContractDrafter() {
+        const clauseType = document.getElementById('contract-clause-type').value;
+        const companyName = document.getElementById('contract-company-name').value;
+        const jurisdiction = document.getElementById('contract-jurisdiction').value;
+
+        const result = [
+          `${companyName} — ${clauseType}`,
+          `Governing Law: ${jurisdiction}`,
+          '',
+          '1. Custody, Transfer, and Liability Allocation',
+          'The carrier, drayage provider, and/or broker shall maintain continuous accountability for cargo custody from pickup through destination handoff. No cargo shall be transferred, released, or reassigned without written confirmation from the appointing party and a documented chain-of-custody record.',
+          '',
+          '2. Currency and Settlement',
+          'All USD-denominated charges shall be settled in accordance with the prevailing Belize FX peg of $2.00 BZD = $1.00 USD unless otherwise expressly agreed in writing. Where the parties elect dual-currency settlement, the conversion rate shall be applied using the Belize Central Bank reference rate in effect at the time of invoice issuance.',
+          '',
+          '3. Compliance and Operational Controls',
+          'The parties acknowledge that telecom access, carrier vetting, and customs clearances are subject to jurisdictional compliance obligations, including remote access restrictions, agency filings, and anti-fraud verification procedures.'
+        ].join('\n');
+
+        document.getElementById('contract-result-text').textContent = result;
+        document.getElementById('contract-output-container').classList.remove('hidden');
+      }
+
+      function runGroundedSearch() {
+        const query = document.getElementById('grounded-query-input').value;
+        const result = [
+          `Grounded Search: ${query}`,
+          '',
+          'Summary:',
+          ' - Belize Customs duties are commonly applied under the tariff schedule and can be affected by specific goods classifications, revenue replacement duties, and environmental or inspection-related levies.',
+          ' - Commercial vehicle imports may trigger domestic customs assessment, environmental levy, and compliance review depending on the declared use and equipment class.',
+          ' - Importers should confirm the exact tariff chapter, origin designation, and whether the goods are subject to special permit obligations or qualifying exemptions.',
+          '',
+          'Practical Advice:',
+          ' - Validate commodity HS code classification before booking cargo, especially for commercial trucks, refrigeration units, and food-related shipments.',
+          ' - Confirm whether a Belize Customs broker or declarant is required for the shipment and whether BHA/BAHA or other inspection rules apply.',
+          ' - Factor taxes and levies into landed cost models before final pricing to avoid delayed release and extra demurrage exposure.'
+        ].join('\n');
+
+        const sources = [
+          'Belize Customs & Excise Department — tariff and customs procedures',
+          'Belize Customs — import and declaration compliance requirements',
+          'CARICOM Revised Treaty and tariff classification guidance',
+          'Belize trade and environmental compliance notices'
+        ];
+
+        document.getElementById('grounded-result-text').textContent = result;
+        document.getElementById('grounded-sources-list').innerHTML = sources.map((source) => `<li>• ${source}</li>`).join('');
+        document.getElementById('grounded-output-container').classList.remove('hidden');
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        renderPhase(1);
+        selectModel('A');
+        filterJurisdictions();
+        initCapitalChart();
+      });
+    </script>
+  </body>
+</html>
